@@ -2,14 +2,17 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Moodcrew | Links</title>
     <style>
         * { box-sizing: border-box; }
 
-        /* FIX: Hintergrund an HTML binden verhindert das Wackeln beim Scrollen */
+        /* FIX: Das Bild wird direkt an das HTML-Element geheftet */
         html {
-            height: 100%;
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            /* Das Bild deckt immer 100% des Sichtfelds ab, auch beim Scrollen */
             background: #111 url('Moodcrewball_von_der_seite.png') no-repeat center center fixed;
             background-size: cover;
         }
@@ -19,9 +22,9 @@
             padding: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: white;
-            min-height: 100%;
-            /* Erlaubt sauberes Scrollen ohne Bild-Verzerrung */
-            overflow-y: auto;
+            /* Sorgt dafür, dass der Body scrollbar ist, aber das Bild im Hintergrund bleibt */
+            min-height: 100vh;
+            display: block;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
         }
@@ -29,7 +32,8 @@
         .overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.65);
+            /* Abdunkelung für den gesamten Bildschirm */
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
             pointer-events: none; 
         }
@@ -40,15 +44,15 @@
             width: 100%;
             max-width: 320px; 
             margin: 0 auto;
-            /* Genug Platz oben und unten für das Full-Screen Feeling */
-            padding: 50px 15px 80px 15px;
+            /* Oben und unten genug Platz zum Scrollen lassen */
+            padding: 60px 15px 100px 15px;
             text-align: center;
         }
 
         .profile-img-container {
             width: 140px;
             height: 140px;
-            margin: 0 auto 15px;
+            margin: 0 auto 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -61,8 +65,9 @@
         }
 
         .username { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
-        .bio { font-size: 0.95rem; margin-bottom: 30px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); line-height: 1.4; }
+        .bio { font-size: 0.95rem; margin-bottom: 35px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); line-height: 1.4; }
 
+        /* BUTTONS */
         .link-item {
             display: flex;
             flex-direction: column;
@@ -75,7 +80,7 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             overflow: hidden;
             width: 100%;
-            height: 85px; /* Etwas wuchtiger für besseres Tippen */
+            height: 85px;
             position: relative;
             color: white !important;
             -webkit-tap-highlight-color: transparent; 
@@ -108,15 +113,14 @@
         .btn-title { font-weight: 900; text-transform: uppercase; font-size: 1rem; }
         .btn-url { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
-        /* SHOP BUTTON */
-        .shop-btn { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.6); margin-bottom: 15px; }
+        /* INDIVIDUELLE BUTTON STYLES */
+        .shop-btn { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.6); }
         .shop-btn .bg-layer {
             background-image: url('Moodcrew_Shopbutton_hintergrund.png');
             background-size: 400% auto;
         }
         .shop-btn:hover .bg-layer { background-size: 350% auto; }
 
-        /* SOCIAL BUTTONS */
         .social-btn { border: 2px solid rgba(144, 238, 144, 0.6); }
         .social-btn .bg-layer {
             background-image: url('Moodcrewball_von_der_seite.png');
@@ -128,7 +132,6 @@
             background-position: center 50%; 
         }
 
-        /* CREW-BUTTONS (MILCHIG) */
         .milky-btn {
             background-color: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(15px);
@@ -141,7 +144,7 @@
         .milky-btn .btn-title { text-shadow: none; font-size: 0.9rem; }
 
         .divider { 
-            margin: 35px 0 15px; 
+            margin: 40px 0 15px; 
             font-size: 0.8rem; 
             text-transform: uppercase; 
             letter-spacing: 4px; 
@@ -149,7 +152,7 @@
             opacity: 0.7;
         }
         
-        .footer { margin-top: 40px; font-size: 0.65rem; opacity: 0.4; }
+        .footer { margin-top: 50px; font-size: 0.65rem; opacity: 0.4; }
     </style>
 </head>
 <body>
