@@ -7,45 +7,52 @@
     <style>
         * { box-sizing: border-box; }
 
+        /* Der Body ist jetzt transparent, damit man das Bild dahinter sieht */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
-            /* WICHTIG: Kein fixed background auf Handys für flüssiges Scrollen */
-            background-color: #111;
+            min-height: 100%;
+            background-color: #000;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: white;
         }
 
-        /* Das Bild wird jetzt als eigene Ebene hinter alles gelegt */
+        /* FIX: Hintergrund wird fest am Viewport verankert */
         .background-container {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: url('Moodcrewball_von_der_seite.png') no-repeat center center;
             background-size: cover;
-            z-index: -2; /* Ganz nach hinten */
+            z-index: 0; /* Ebene 0 */
         }
 
+        /* Das schwarze Overlay liegt direkt über dem Bild */
         .overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.65);
-            z-index: -1; /* Vor dem Bild, hinter dem Content */
+            z-index: 1; /* Ebene 1 */
+            pointer-events: none; 
         }
 
+        /* Der Content liegt über allem anderen */
         .content {
             position: relative;
+            z-index: 10; /* Ebene 10 - Ganz oben */
             width: 100%;
             max-width: 320px; 
             margin: 0 auto;
             padding: 50px 15px 100px 15px;
             text-align: center;
-            /* Ermöglicht natürliches Scrollen */
-            min-height: 101vh; 
+            /* Sorgt dafür, dass man auf jeden Fall scrollen kann */
+            min-height: 100.1vh; 
         }
+
+        /* --- AB HIER BLEIBT ALLES GLEICH (BUTTONS ETC.) --- */
 
         .profile-img-container {
             width: 140px;
@@ -65,7 +72,6 @@
         .username { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
         .bio { font-size: 0.95rem; margin-bottom: 35px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); line-height: 1.4; }
 
-        /* BUTTONS */
         .link-item {
             display: flex;
             flex-direction: column;
@@ -111,7 +117,6 @@
         .btn-title { font-weight: 900; text-transform: uppercase; font-size: 1rem; }
         .btn-url { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
-        /* SHOP BUTTON */
         .shop-btn { border: 2px solid #ff4500; }
         .shop-btn .bg-layer {
             background-image: url('Moodcrew_Shopbutton_hintergrund.png');
@@ -119,7 +124,6 @@
         }
         .shop-btn:hover .bg-layer { background-size: 350% auto; }
 
-        /* SOCIAL BUTTONS */
         .social-btn { border: 2px solid rgba(144, 238, 144, 0.6); }
         .social-btn .bg-layer {
             background-image: url('Moodcrewball_von_der_seite.png');
@@ -131,7 +135,6 @@
             background-position: center 50%; 
         }
 
-        /* CREW-BUTTONS */
         .milky-btn {
             background-color: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(15px);
