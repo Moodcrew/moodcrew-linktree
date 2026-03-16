@@ -2,21 +2,28 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Moodcrew | Links</title>
     <style>
         * { box-sizing: border-box; }
 
-        body {
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
+            /* Verhindert das seitliche Wackeln auf Handys */
+            overflow-x: hidden; 
+            background-color: #111;
+        }
+
+        body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Hintergrundbild fixiert für Parallax-Effekt */
             background: #111 url('Moodcrewball_von_der_seite.png') no-repeat center center fixed;
             background-size: cover;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
             color: white;
+            /* Ermöglicht vertikales Scrollen */
+            display: block; 
         }
 
         .overlay {
@@ -24,6 +31,8 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.65);
             z-index: 1;
+            /* Overlay bleibt fest im Hintergrund */
+            pointer-events: none; 
         }
 
         .content {
@@ -31,14 +40,17 @@
             z-index: 2;
             width: 100%;
             max-width: 310px; 
-            padding: 20px 10px;
+            /* Zentriert den Container horizontal und gibt oben/unten Platz zum Scrollen */
+            margin: 0 auto;
+            padding: 40px 10px 60px 10px;
             text-align: center;
+            min-height: 100vh;
         }
 
         .profile-img-container {
             width: 150px;
             height: 150px;
-            margin: 0 auto 5px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -50,8 +62,8 @@
             object-fit: contain;
         }
 
-        .username { font-size: 1.2rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 2px; }
-        .bio { font-size: 0.9rem; margin-bottom: 15px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); }
+        .username { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
+        .bio { font-size: 0.95rem; margin-bottom: 25px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); line-height: 1.4; }
 
         .link-item {
             display: flex;
@@ -59,15 +71,17 @@
             justify-content: center;
             align-items: center;
             text-decoration: none;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             border-radius: 50px;
             transition: all 0.3s ease; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             overflow: hidden;
             width: 100%;
             height: 80px;
             position: relative;
             color: white !important;
+            /* Verhindert "Sticky"-Effekt beim Tippen auf Handys */
+            -webkit-tap-highlight-color: transparent; 
         }
 
         .link-item:active { transform: scale(0.96); }
@@ -77,7 +91,6 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background-repeat: no-repeat;
             background-position: center;
-            /* WICHTIG: background-position wird mit animiert */
             transition: background-size 0.6s ease-out, background-position 0.6s ease-out; 
             z-index: 1;
         }
@@ -95,51 +108,63 @@
             z-index: 3;
             text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
-        .btn-title { font-weight: 900; text-transform: uppercase; font-size: 0.95rem; }
-        .btn-url { font-size: 0.7rem; opacity: 0.9; }
+        .btn-title { font-weight: 900; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.5px; }
+        .btn-url { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
-        /* SHOP BUTTON (UNVERÄNDERT) */
-        .shop-btn { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.6); margin-bottom: 12px; }
+        /* SHOP BUTTON */
+        .shop-btn { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.6); margin-bottom: 15px; }
         .shop-btn .bg-layer {
             background-image: url('Moodcrew_Shopbutton_hintergrund.png');
             background-size: 400% auto;
         }
         .shop-btn:hover .bg-layer { background-size: 350% auto; }
 
-        /* SOCIAL BUTTONS (ZOOM & SHIFT) */
+        /* SOCIAL BUTTONS */
         .social-btn { border: 2px solid rgba(144, 238, 144, 0.6); }
         .social-btn .bg-layer {
             background-image: url('Moodcrewball_von_der_seite.png');
-            /* Start Zoom */
             background-size: 430% auto;
-            /* Start Position (eher oben) */
             background-position: center 20%;
         }
         .social-btn:hover .bg-layer { 
-            /* Hover Zoom (sanft raus) */
             background-size: 380% auto; 
-            /* Hover Position (ganz unten), um den unteren Part zu zeigen */
             background-position: center 50%; 
         }
 
         /* CREW-BUTTONS */
         .milky-btn {
-            background-color: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            height: 55px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            height: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         .milky-btn::before { display: none; }
-        .milky-btn:hover { background-color: rgba(255, 255, 255, 0.25); }
-        .milky-btn .btn-title { text-shadow: none; }
+        .milky-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+        .milky-btn .btn-title { text-shadow: none; font-size: 0.9rem; }
 
-        .divider { margin: 20px 0 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; }
-        .footer { margin-top: 25px; font-size: 0.6rem; opacity: 0.5; }
+        .divider { 
+            margin: 35px 0 15px; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-weight: bold; 
+            opacity: 0.7;
+        }
+        
+        .footer { margin-top: 40px; font-size: 0.65rem; opacity: 0.4; letter-spacing: 1px; }
+
+        /* Optimierung für sehr kleine Handys */
+        @media (max-height: 600px) {
+            .content { padding-top: 20px; }
+            .profile-img-container { width: 120px; height: 120px; }
+        }
     </style>
 </head>
 <body>
+
     <div class="overlay"></div>
+
     <div class="content">
         <div class="profile-img-container">
             <img src="Moodcrew_ausgeschnittener_Ball.png" alt="Moodcrew Ball" class="profile-img-inner">
@@ -178,5 +203,6 @@
 
         <div class="footer">© 2026 MOODCREW</div>
     </div>
+
 </body>
 </html>
