@@ -2,28 +2,28 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Moodcrew | Links</title>
     <style>
         * { box-sizing: border-box; }
 
-        html, body {
+        /* FIX: Hintergrund an HTML binden verhindert das Wackeln beim Scrollen */
+        html {
             height: 100%;
-            margin: 0;
-            padding: 0;
-            /* Verhindert das seitliche Wackeln auf Handys */
-            overflow-x: hidden; 
-            background-color: #111;
+            background: #111 url('Moodcrewball_von_der_seite.png') no-repeat center center fixed;
+            background-size: cover;
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* Hintergrundbild fixiert für Parallax-Effekt */
-            background: #111 url('Moodcrewball_von_der_seite.png') no-repeat center center fixed;
-            background-size: cover;
             color: white;
-            /* Ermöglicht vertikales Scrollen */
-            display: block; 
+            min-height: 100%;
+            /* Erlaubt sauberes Scrollen ohne Bild-Verzerrung */
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         .overlay {
@@ -31,7 +31,6 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0, 0, 0, 0.65);
             z-index: 1;
-            /* Overlay bleibt fest im Hintergrund */
             pointer-events: none; 
         }
 
@@ -39,17 +38,16 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 310px; 
-            /* Zentriert den Container horizontal und gibt oben/unten Platz zum Scrollen */
+            max-width: 320px; 
             margin: 0 auto;
-            padding: 40px 10px 60px 10px;
+            /* Genug Platz oben und unten für das Full-Screen Feeling */
+            padding: 50px 15px 80px 15px;
             text-align: center;
-            min-height: 100vh;
         }
 
         .profile-img-container {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             margin: 0 auto 15px;
             display: flex;
             align-items: center;
@@ -63,7 +61,7 @@
         }
 
         .username { font-size: 1.3rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 5px; }
-        .bio { font-size: 0.95rem; margin-bottom: 25px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); line-height: 1.4; }
+        .bio { font-size: 0.95rem; margin-bottom: 30px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); line-height: 1.4; }
 
         .link-item {
             display: flex;
@@ -77,10 +75,9 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             overflow: hidden;
             width: 100%;
-            height: 80px;
+            height: 85px; /* Etwas wuchtiger für besseres Tippen */
             position: relative;
             color: white !important;
-            /* Verhindert "Sticky"-Effekt beim Tippen auf Handys */
             -webkit-tap-highlight-color: transparent; 
         }
 
@@ -108,7 +105,7 @@
             z-index: 3;
             text-shadow: 2px 2px 8px rgba(0,0,0,1);
         }
-        .btn-title { font-weight: 900; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.5px; }
+        .btn-title { font-weight: 900; text-transform: uppercase; font-size: 1rem; }
         .btn-url { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
 
         /* SHOP BUTTON */
@@ -131,7 +128,7 @@
             background-position: center 50%; 
         }
 
-        /* CREW-BUTTONS */
+        /* CREW-BUTTONS (MILCHIG) */
         .milky-btn {
             background-color: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(15px);
@@ -152,13 +149,7 @@
             opacity: 0.7;
         }
         
-        .footer { margin-top: 40px; font-size: 0.65rem; opacity: 0.4; letter-spacing: 1px; }
-
-        /* Optimierung für sehr kleine Handys */
-        @media (max-height: 600px) {
-            .content { padding-top: 20px; }
-            .profile-img-container { width: 120px; height: 120px; }
-        }
+        .footer { margin-top: 40px; font-size: 0.65rem; opacity: 0.4; }
     </style>
 </head>
 <body>
