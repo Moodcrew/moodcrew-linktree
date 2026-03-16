@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodcrew | Links</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #111 url('Moodcrewball_von_der_seite.png') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 310px; 
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        .profile-img-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img-inner {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .username { font-size: 1.2rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); margin-bottom: 2px; }
+        .bio { font-size: 0.9rem; margin-bottom: 15px; opacity: 0.9; text-shadow: 1px 1px 3px rgba(0,0,0,1); }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            margin-bottom: 8px;
+            border-radius: 50px;
+            transition: all 0.3s ease; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            overflow: hidden;
+            width: 100%;
+            height: 80px;
+            position: relative;
+            color: white !important;
+        }
+
+        .link-item:active { transform: scale(0.96); }
+
+        .bg-layer {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* WICHTIG: background-position wird mit animiert */
+            transition: background-size 0.6s ease-out, background-position 0.6s ease-out; 
+            z-index: 1;
+        }
+
+        .link-item::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 2;
+        }
+
+        .btn-title, .btn-url { 
+            position: relative;
+            z-index: 3;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1);
+        }
+        .btn-title { font-weight: 900; text-transform: uppercase; font-size: 0.95rem; }
+        .btn-url { font-size: 0.7rem; opacity: 0.9; }
+
+        /* SHOP BUTTON (UNVERÄNDERT) */
+        .shop-btn { border: 2px solid #ff4500; box-shadow: 0 0 15px rgba(255, 69, 0, 0.6); margin-bottom: 12px; }
+        .shop-btn .bg-layer {
+            background-image: url('Moodcrew_Shopbutton_hintergrund.png');
+            background-size: 400% auto;
+        }
+        .shop-btn:hover .bg-layer { background-size: 350% auto; }
+
+        /* SOCIAL BUTTONS (ZOOM & SHIFT) */
+        .social-btn { border: 2px solid rgba(144, 238, 144, 0.6); }
+        .social-btn .bg-layer {
+            background-image: url('Moodcrewball_von_der_seite.png');
+            /* Start Zoom */
+            background-size: 430% auto;
+            /* Start Position (eher oben) */
+            background-position: center 20%;
+        }
+        .social-btn:hover .bg-layer { 
+            /* Hover Zoom (sanft raus) */
+            background-size: 380% auto; 
+            /* Hover Position (ganz unten), um den unteren Part zu zeigen */
+            background-position: center 50%; 
+        }
+
+        /* CREW-BUTTONS */
+        .milky-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            height: 55px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .milky-btn::before { display: none; }
+        .milky-btn:hover { background-color: rgba(255, 255, 255, 0.25); }
+        .milky-btn .btn-title { text-shadow: none; }
+
+        .divider { margin: 20px 0 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; font-weight: bold; }
+        .footer { margin-top: 25px; font-size: 0.6rem; opacity: 0.5; }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="profile-img-container">
+            <img src="Moodcrew_ausgeschnittener_Ball.png" alt="Moodcrew Ball" class="profile-img-inner">
+        </div>
+
+        <div class="username">@moodcrewde</div>
+        <div class="bio">Hol Dir den MELONBALL<br>folg uns um nichts zu verpassen</div>
+
+        <a href="https://www.moodcrew.de" target="_blank" class="link-item shop-btn">
+            <div class="bg-layer"></div>
+            <span class="btn-title">🏀 ZUM MOODCREW SHOP</span>
+            <span class="btn-url">www.moodcrew.de</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@moodcrewde" target="_blank" class="link-item social-btn">
+            <div class="bg-layer"></div>
+            <span class="btn-title">📱 Moodcrew TIKTOK</span>
+            <span class="btn-url">tiktok.com/@moodcrewde</span>
+        </a>
+
+        <a href="https://www.instagram.com/moodcrew.de/" target="_blank" class="link-item social-btn">
+            <div class="bg-layer"></div>
+            <span class="btn-title">📸 Moodcrew INSTAGRAM</span>
+            <span class="btn-url">instagram.com/moodcrew.de</span>
+        </a>
+
+        <div class="divider">The Crew</div>
+
+        <a href="https://www.instagram.com/marlon.mlg/" target="_blank" class="link-item milky-btn">
+            <span class="btn-title">👤 Marlon's Private Insta</span>
+        </a>
+
+        <a href="https://www.instagram.com/joscha.wgl/" target="_blank" class="link-item milky-btn">
+            <span class="btn-title">👤 Joscha's Private Insta</span>
+        </a>
+
+        <div class="footer">© 2026 MOODCREW</div>
+    </div>
+</body>
+</html>
